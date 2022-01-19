@@ -212,7 +212,7 @@ class NeuralNetwork:
             if predictedClasses[i] == testClassValues[i]:
                 numberOfMatches += 1
             else:
-                print(testFeatureVector[i])
+                print(i, testFeatureVector[i], testClassValues[i], predictedClasses[i])
 
         accuracy = numberOfMatches / len(testFeatureVector) * 100
         return accuracy
@@ -231,13 +231,13 @@ def run_offline():
 
     nn.createInputLayer(numberOfFeatures)
     nn.createHiddenLayers([
-        (3, "sigmoid"),
-        (5, "sigmoid"),
-        (4, "sigmoid"),
-        (10, "sigmoid"),
-        (7, "sigmoid")
+        (3, "tanh"),
+        (5, "tanh"),
+        (4, "tanh"),
+        (10, "tanh"),
+        (7, "tanh")
     ])
-    nn.createOutputLayer(numberOfClasses, "sigmoid")
+    nn.createOutputLayer(numberOfClasses, "tanh")
 
     nn.trainNeuralNetwork(featureVector, classVector, 0.001, 10000, 1e-20)
 
